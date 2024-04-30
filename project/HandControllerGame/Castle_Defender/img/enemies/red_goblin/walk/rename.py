@@ -1,0 +1,6 @@
+import os
+
+for n in range(20):
+    file_num = '00' + str(n)
+    file_num = file_num[-3:]
+    os.rename(f'1_enemies_1_walk_{file_num}.png', f'{n}.png')
