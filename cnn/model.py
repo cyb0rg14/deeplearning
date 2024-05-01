@@ -58,4 +58,5 @@ criterion = nn.CrossEntropyLoss()
 
 # Training the model
 num_epochs = 10
+print("Training has started ...")
 train_and_eval(model, criterion, optimizer, train_loader, val_loader, num_epochs=num_epochs)
