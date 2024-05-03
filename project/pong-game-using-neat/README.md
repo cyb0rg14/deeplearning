@@ -24,4 +24,5 @@ python game.py
 ```
 ---
 **If you would like to build this project from scratch yourselves, then you could watch the following youtube video:**
+
 👉🏻 [Python Pong AI Tutorial - Using NEAT](https://youtu.be/2f6TmKm7yx0?si=Vpx6bs0mFgpJgl0d)
