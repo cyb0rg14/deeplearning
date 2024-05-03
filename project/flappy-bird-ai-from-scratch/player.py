@@ -40,7 +40,8 @@ class Player:
 
     def bird_flap(self):
         if not self.flap and not self.sky_collision():
-            self.velocity -= 5
+            self.flap = True
+            self.velocity = -5
         if self.velocity >=3 :
             self.flap = False
 
