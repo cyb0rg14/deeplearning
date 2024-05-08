@@ -133,7 +133,7 @@ class FrozenLakeDQL():
         env.close()
 
         # Save policy
-        torch.save(policy_dqn.state_dict(), "frozen_lake_dql.pt")
+        torch.save(policy_dqn.state_dict(), "bin/frozen_lake_dql.pt")
 
         # Create new graph 
         plt.figure(1)
@@ -150,7 +150,7 @@ class FrozenLakeDQL():
         plt.plot(epsilon_history)
         
         # Save plots
-        plt.savefig('frozen_lake_dql.png')
+        plt.savefig('image/frozen_lake_dql.png')
 
     # Optimize policy network
     def optimize(self, mini_batch, policy_dqn, target_dqn):
@@ -192,14 +192,15 @@ class FrozenLakeDQL():
         loss.backward()
         self.optimizer.step()
 
-    '''
-    Converts an state (int) to a tensor representation.
-    For example, the FrozenLake 4x4 map has 4x4=16 states numbered from 0 to 15. 
-
-    Parameters: state=1, num_states=16
-    Return: tensor([0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
-    '''
+    
     def state_to_dqn_input(self, state:int, num_states:int)->torch.Tensor:
+        '''
+        Converts an state (int) to a tensor representation.
+        For example, the FrozenLake 4x4 map has 4x4=16 states numbered from 0 to 15. 
+
+        Parameters: state=1, num_states=16
+        Return: tensor([0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.])
+        '''
         input_tensor = torch.zeros(num_states)
         input_tensor[state] = 1
         return input_tensor
@@ -213,7 +214,7 @@ class FrozenLakeDQL():
 
         # Load learned policy
         policy_dqn = DQN(in_states=num_states, h1_nodes=num_states, out_actions=num_actions) 
-        policy_dqn.load_state_dict(torch.load("frozen_lake_dql.pt"))
+        policy_dqn.load_state_dict(torch.load("bin/frozen_lake_dql.pt"))
         policy_dqn.eval()    # switch model to evaluation mode
 
         print('Policy (trained):')
