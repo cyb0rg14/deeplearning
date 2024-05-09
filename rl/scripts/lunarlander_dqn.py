@@ -56,7 +56,7 @@ for episode in range(num_episodes):
     episode_reward = 0
     terminated, truncated = False, False
 
-    while not terminated and not truncated:
+    while (not terminated and not truncated):
         state_tensor = torch.tensor(state, dtype=torch.float32).unsqueeze(0)
         action_probs = dqn_model(state_tensor)
         action = torch.argmax(action_probs).item()
@@ -93,7 +93,7 @@ for episode in range(num_episodes):
     print(f"Episode {episode + 1}: Reward = {episode_reward}")
             
 # Save the model weights
-torch.save(dqn_model.state_dict(), 'LunarLander-v2_dqn.pt')
+torch.save(dqn_model.state_dict(), 'bin/LunarLander-v2_dqn.pt')
 
 # Close the environment
 env.close()
